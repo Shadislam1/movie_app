@@ -15,6 +15,8 @@ class MovieProvider extends ChangeNotifier{
   List<String> get movieList => _movieList;
 
   List<String> loadMovies(){
+    _movieList.add("addes a new movie");
+    notifyListeners();
     return _movieList;
   }
 }

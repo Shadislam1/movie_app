@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         
@@ -56,7 +57,23 @@ class _HomeState extends State<Home> {
         child: ListView.builder(
           itemCount: movies.length,
           itemBuilder:(context,index){
-          return Text(movies[index]);
+            return ListTile(
+              title: Text(movies[index]),
+              subtitle: Text('sub'),
+              trailing: Icon(Icons.sunny),
+              leading: CircleAvatar(
+                child: Text(movies[index][0]),
+                ),
+              
+             
+            );
+          // return Card(
+          //   child: Center(
+          //     child: Text(
+          //       movies[index]
+          //     ),
+          //   ),
+          //   );
         }),
       ),
     );
