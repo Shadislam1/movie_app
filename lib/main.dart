@@ -37,43 +37,36 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  // final _movieList =<String>[
-  //   "The Shawshank Redemption",
-  //   "The Godfather",
-  //   "The Dark Knight",
-  //   "The GodFather:Part II",
-  //   "The Loard of the Rings: The Return od the King",
-  //   "Pulp Fiction",
-  //   "Schidler's List",
-  // ];
+  @override
+  void initState() {
+   Provider.of<MovieProvider>(context, listen:false).loadMovies(context);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    final movies = Provider.of<MovieProvider>(context).loadMovies();
+    final movieData = Provider.of<MovieProvider>(context);
     return  Scaffold(
       appBar: AppBar(
         title: Text('Movies'),
       ),
+
       body: Center(
         child: ListView.builder(
-          itemCount: movies.length,
+          itemCount: movieData.movieList.length,
           itemBuilder:(context,index){
+            final  movie = movieData.movieList[index];
             return ListTile(
-              title: Text(movies[index]),
-              subtitle: Text('sub'),
+              title: Text(movie.title),
+              subtitle: Text(movie.director),
               trailing: Icon(Icons.sunny),
               leading: CircleAvatar(
-                child: Text(movies[index][0]),
+                child: Text(movie.title.isNotEmpty ? movie.title[0] : '?'),
+                // Text(movie.title[index][0]),
                 ),
               
              
             );
-          // return Card(
-          //   child: Center(
-          //     child: Text(
-          //       movies[index]
-          //     ),
-          //   ),
-          //   );
+         
         }),
       ),
     );
