@@ -6,16 +6,18 @@ import 'package:movie_app/models/movie.dart';
 class MovieDetails extends StatelessWidget {
   const MovieDetails({super.key, required this.movie});
   final Movie movie;
+  //final  bool isDetails;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Movie Details'),
+        title:const Text('Movie Details'),
       ),
       body: Container(
         child: Column(
-          children: [MovieCard(movie: movie),
+          children: [
+            MovieCard(movie: movie,isDetails: true,),
           Text(
             'Movie Poster',
             style: Theme.of(context).textTheme.headlineSmall,
